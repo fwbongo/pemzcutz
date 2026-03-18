@@ -37,8 +37,8 @@
         <div class="hero-art">
           <div class="card">
             <div class="card-title">Today's Energy</div>
-            <div class="card-price">£20</div>
-            <div class="card-sub">Haircut</div>
+            <div class="card-price" id="energy-price">£15</div>
+            <div class="card-sub" id="energy-name">Haircut</div>
           </div>
           <img
             src="IMG_7404.JPG"
@@ -235,6 +235,28 @@
         "IMG_7401.JPG",
         "IMG_7402.JPG",
       ];
+
+      const energyOptions = [
+        { name: "Haircut", price: "£15" },
+        { name: "Haircut & Beard", price: "£25" },
+        { name: "Shape Up", price: "£10" },
+        { name: "Big Chop", price: "£30" },
+        { name: "Wash & Haircut", price: "£30" },
+      ];
+
+      const energyPrice = document.getElementById("energy-price");
+      const energyName = document.getElementById("energy-name");
+      let energyIndex = 0;
+
+      const rotateEnergy = () => {
+        const option = energyOptions[energyIndex % energyOptions.length];
+        energyName.textContent = option.name;
+        energyPrice.textContent = option.price;
+        energyIndex += 1;
+      };
+
+      rotateEnergy();
+      setInterval(rotateEnergy, 600000);
 
       const lightbox = document.querySelector(".lightbox");
       const lightboxImage = document.querySelector(".lightbox-image");
