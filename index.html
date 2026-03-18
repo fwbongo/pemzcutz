@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PemzCutz | Fresh Cuts For The Youth</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <div class="logo">PemzCutz</div>
+        <div class="nav-cta">
+          <a class="button ghost" href="#services">View Services</a>
+          <a class="button" href="#book">Book Now</a>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="tag">Fresh • Clean • Bold</p>
+          <h1>Fresh fades with a playful vibe.</h1>
+          <p class="lead">
+            A bold, bright barbershop experience. Smooth lines, sharp designs,
+            and big energy.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#book">Book An Appointment</a>
+            <a class="button ghost" href="#addons">See Add-ons</a>
+          </div>
+          <div class="hero-badges">
+            <span>Walk-ins Welcome</span>
+            <span>Student Friendly</span>
+            <span>Clean & Safe</span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="card">
+            <div class="card-title">Today's Energy</div>
+            <div class="card-price">£20</div>
+            <div class="card-sub">Haircut</div>
+          </div>
+          <img
+            src="IMG_7404.JPG"
+            alt="PemzCutz hero artwork"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="services" class="section services">
+        <h2>Core Services</h2>
+        <p class="section-lead">
+          Crisp cuts and clean shapes with a confident, modern vibe.
+        </p>
+        <div class="grid">
+          <article class="service-card">
+            <h3>Haircut</h3>
+            <p>Classic taper, fade, or trim to match your style.</p>
+            <span class="price">£20</span>
+            <span class="duration">45 minutes</span>
+          </article>
+          <article class="service-card">
+            <h3>Haircut & Beard</h3>
+            <p>Full head refresh with beard lineup and blend.</p>
+            <span class="price">£25</span>
+            <span class="duration">1 hour</span>
+          </article>
+          <article class="service-card">
+            <h3>Shape Up</h3>
+            <p>Edges razor sharp for that clean finish.</p>
+            <span class="price">£10</span>
+            <span class="duration">20 minutes</span>
+          </article>
+          <article class="service-card">
+            <h3>Big Chop</h3>
+            <p>Ready for a reset? Go for the major cut.</p>
+            <span class="price">£30</span>
+            <span class="duration">1 hour 30 minutes</span>
+          </article>
+          <article class="service-card">
+            <h3>Wash & Haircut</h3>
+            <p>Full wash, cut, and style package.</p>
+            <span class="price">£30</span>
+            <span class="duration">1 hour</span>
+          </article>
+        </div>
+        <div class="showcase-strip">
+          <button class="showcase-link" type="button" data-gallery="cuts" data-index="0">
+            <img src="IMG_7399.JPG" alt="Fresh fade haircut" loading="lazy" />
+          </button>
+          <button class="showcase-link" type="button" data-gallery="cuts" data-index="1">
+            <img src="IMG_7400.JPG" alt="Sharp line-up haircut" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <section id="addons" class="section addons">
+        <div class="addons-header">
+          <h2>Haircut Add-ons</h2>
+          <p class="section-lead">
+            Make it custom. Stack these on top of any cut.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="addon-card">
+            <h3>Permanent Enhancements</h3>
+            <p>Boost your look with extra details.</p>
+            <span class="price">+£5</span>
+          </article>
+          <article class="addon-card">
+            <h3>Design</h3>
+            <p>Creative line work for a standout finish.</p>
+            <span class="price">+£5</span>
+          </article>
+          <article class="addon-card">
+            <h3>TikTok Video</h3>
+            <p>Get your cut recorded and clipped for socials.</p>
+            <span class="price">+£20</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="reviews" class="section reviews">
+        <div class="reviews-header">
+          <h2>Customer Reviews</h2>
+          <p class="section-lead">
+            Leave a review and see the latest feedback from the community.
+          </p>
+        </div>
+        <div class="reviews-grid">
+          <form class="review-form" id="review-form">
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <div class="rating-field">
+              <span>Rating</span>
+              <div class="star-input" role="radiogroup" aria-label="Rating">
+                <button type="button" class="star-button" data-value="1" aria-label="1 star">★</button>
+                <button type="button" class="star-button" data-value="2" aria-label="2 stars">★</button>
+                <button type="button" class="star-button" data-value="3" aria-label="3 stars">★</button>
+                <button type="button" class="star-button" data-value="4" aria-label="4 stars">★</button>
+                <button type="button" class="star-button" data-value="5" aria-label="5 stars">★</button>
+              </div>
+              <input type="hidden" name="rating" id="rating-input" value="5" required />
+            </div>
+            <label>
+              Comment
+              <textarea name="comment" rows="4" placeholder="Leave a comment" required></textarea>
+            </label>
+            <button class="button" type="submit">Post Review</button>
+            <p class="form-note" id="review-status" aria-live="polite"></p>
+          </form>
+          <div class="review-list" id="review-list" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="location" class="section location">
+        <div class="location-card">
+          <div>
+            <h2>Find Us</h2>
+            <p class="section-lead">
+              7Star, 71A Abington Street
+            </p>
+          </div>
+          <div class="map-embed">
+            <iframe
+              title="PemzCutz location map"
+              src="https://www.google.com/maps?q=7Star,%2071A%20Abington%20Street&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="book" class="section booking">
+        <div class="booking-card">
+          <div>
+            <h2>Book Your Slot</h2>
+            <p class="section-lead">
+              Tap in and lock your time. Bring your style reference and we will
+              make it pop.
+            </p>
+          </div>
+          <div class="booking-actions">
+            <a class="button" href="https://barbr.me/pemzcutz">Book Now</a>
+            <a class="button ghost" href="https://instagram.com/pemzcutz">DM @pemzcutz</a>
+          </div>
+        </div>
+        <div class="showcase-strip alt">
+          <button class="showcase-link" type="button" data-gallery="cuts" data-index="2">
+            <img src="IMG_7401.JPG" alt="Clean taper haircut" loading="lazy" />
+          </button>
+          <button class="showcase-link" type="button" data-gallery="cuts" data-index="3">
+            <img src="IMG_7402.JPG" alt="Detailed fade haircut" loading="lazy" />
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <h3>PemzCutz</h3>
+        <p>Fresh trims for everyone.</p>
+        <p>Instagram & TikTok: @pemzcutz</p>
+        <p>WhatsApp: 07367 319293</p>
+      </div>
+      <div class="footer-meta">
+        <span>Open Tue–Sat</span>
+        <span>11am – 7pm</span>
+        <span>7Star, 71A Abington Street</span>
+      </div>
+    </footer>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="lightbox-backdrop" data-close="true"></div>
+      <div class="lightbox-panel">
+        <button class="lightbox-close" type="button" aria-label="Close" data-close="true">×</button>
+        <button class="lightbox-nav prev" type="button" aria-label="Previous image">‹</button>
+        <img class="lightbox-image" src="" alt="Haircut gallery image" />
+        <button class="lightbox-nav next" type="button" aria-label="Next image">›</button>
+      </div>
+    </div>
+
+    <script>
+      const REVIEWS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwB-NgjMbOt5budYxfKheXZaATCtuhi2UTxQKgTXuk6Snnf2-cUWvXyD8XqS-QiwIdAmg/exec";
+      const reviewForm = document.getElementById("review-form");
+      const reviewList = document.getElementById("review-list");
+      const reviewStatus = document.getElementById("review-status");
+      const ratingInput = document.getElementById("rating-input");
+      const starButtons = document.querySelectorAll(".star-button");
+
+      const galleryImages = [
+        "IMG_7399.JPG",
+        "IMG_7400.JPG",
+        "IMG_7401.JPG",
+        "IMG_7402.JPG",
+      ];
+
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImage = document.querySelector(".lightbox-image");
+      const prevButton = document.querySelector(".lightbox-nav.prev");
+      const nextButton = document.querySelector(".lightbox-nav.next");
+      const closeTargets = document.querySelectorAll("[data-close='true']");
+      let currentIndex = 0;
+
+      const openLightbox = (index) => {
+        currentIndex = index;
+        lightboxImage.src = galleryImages[currentIndex];
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("no-scroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("no-scroll");
+      };
+
+      const showNext = () => {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        lightboxImage.src = galleryImages[currentIndex];
+      };
+
+      const showPrev = () => {
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        lightboxImage.src = galleryImages[currentIndex];
+      };
+
+      document.querySelectorAll(".showcase-link").forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.index);
+          openLightbox(index);
+        });
+      });
+
+      nextButton.addEventListener("click", showNext);
+      prevButton.addEventListener("click", showPrev);
+      closeTargets.forEach((target) => target.addEventListener("click", closeLightbox));
+      document.addEventListener("keydown", (event) => {
+        if (lightbox.getAttribute("aria-hidden") === "true") return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowRight") showNext();
+        if (event.key === "ArrowLeft") showPrev();
+      });
+
+      const renderReviews = (reviews) => {
+        if (!reviews.length) {
+          reviewList.innerHTML = "<p>No reviews yet. Be the first!</p>";
+          return;
+        }
+
+        reviewList.innerHTML = reviews
+          .map(
+            (review) => `
+            <article class="review-card">
+              <div class="review-stars">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+              <p class="review-comment">${review.comment}</p>
+              <p class="review-name">— ${review.name}</p>
+            </article>
+          `
+          )
+          .join("");
+      };
+
+      const loadReviews = async () => {
+        if (!REVIEWS_ENDPOINT) {
+          reviewList.innerHTML = "<p>Live reviews will appear here once connected.</p>";
+          return;
+        }
+
+        try {
+          const response = await fetch(REVIEWS_ENDPOINT);
+          const data = await response.json();
+          renderReviews(data);
+        } catch (error) {
+          reviewList.innerHTML = "<p>Unable to load reviews right now.</p>";
+        }
+      };
+
+      reviewForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!REVIEWS_ENDPOINT) {
+          reviewStatus.textContent = "Reviews are not connected yet.";
+          return;
+        }
+
+        const formData = new FormData(reviewForm);
+        const payload = {
+          name: formData.get("name"),
+          rating: Number(formData.get("rating")),
+          comment: formData.get("comment"),
+        };
+
+        try {
+          const response = await fetch(REVIEWS_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) throw new Error("Failed");
+          reviewForm.reset();
+          ratingInput.value = "5";
+          starButtons.forEach((button) => {
+            const value = Number(button.dataset.value);
+            button.classList.toggle("active", value <= 5);
+          });
+          reviewStatus.textContent = "Thanks! Your review is live.";
+          loadReviews();
+        } catch (error) {
+          reviewStatus.textContent = "Could not post review. Try again.";
+        }
+      });
+
+      const setStars = (value) => {
+        ratingInput.value = String(value);
+        starButtons.forEach((button) => {
+          const starValue = Number(button.dataset.value);
+          button.classList.toggle("active", starValue <= value);
+        });
+      };
+
+      starButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = Number(button.dataset.value);
+          setStars(value);
+        });
+      });
+
+      setStars(5);
+      loadReviews();
+    </script>
+  </body>
+</html>
