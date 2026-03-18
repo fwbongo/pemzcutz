@@ -123,41 +123,6 @@
         </div>
       </section>
 
-      <section id="reviews" class="section reviews">
-        <div class="reviews-header">
-          <h2>Customer Reviews</h2>
-          <p class="section-lead">
-            Leave a review and see the latest feedback from the community.
-          </p>
-        </div>
-        <div class="reviews-grid">
-          <form class="review-form" id="review-form">
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" required />
-            </label>
-            <div class="rating-field">
-              <span>Rating</span>
-              <div class="star-input" role="radiogroup" aria-label="Rating">
-                <button type="button" class="star-button" data-value="1" aria-label="1 star">★</button>
-                <button type="button" class="star-button" data-value="2" aria-label="2 stars">★</button>
-                <button type="button" class="star-button" data-value="3" aria-label="3 stars">★</button>
-                <button type="button" class="star-button" data-value="4" aria-label="4 stars">★</button>
-                <button type="button" class="star-button" data-value="5" aria-label="5 stars">★</button>
-              </div>
-              <input type="hidden" name="rating" id="rating-input" value="5" required />
-            </div>
-            <label>
-              Comment
-              <textarea name="comment" rows="4" placeholder="Leave a comment" required></textarea>
-            </label>
-            <button class="button" type="submit">Post Review</button>
-            <p class="form-note" id="review-status" aria-live="polite"></p>
-          </form>
-          <div class="review-list" id="review-list" aria-live="polite"></div>
-        </div>
-      </section>
-
       <section id="location" class="section location">
         <div class="location-card">
           <div>
@@ -227,13 +192,6 @@
     </div>
 
     <script>
-      const REVIEWS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwB-NgjMbOt5budYxfKheXZaATCtuhi2UTxQKgTXuk6Snnf2-cUWvXyD8XqS-QiwIdAmg/exec";
-      const reviewForm = document.getElementById("review-form");
-      const reviewList = document.getElementById("review-list");
-      const reviewStatus = document.getElementById("review-status");
-      const ratingInput = document.getElementById("rating-input");
-      const starButtons = document.querySelectorAll(".star-button");
-
       const galleryImages = [
         "IMG_7399.JPG",
         "IMG_7400.JPG",
@@ -287,112 +245,6 @@
         if (event.key === "ArrowLeft") showPrev();
       });
 
-      const escapeHtml = (value) =>
-        String(value || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;");
-
-      const renderReviews = (reviews) => {
-        if (!Array.isArray(reviews) || !reviews.length) {
-          reviewList.innerHTML = "<p>No reviews yet. Be the first!</p>";
-          return;
-        }
-
-        reviewList.innerHTML = reviews
-          .map(
-            (review) => {
-              const rating = Math.max(1, Math.min(5, Number(review.rating) || 0));
-              const name = escapeHtml(review.name);
-              const comment = escapeHtml(review.comment);
-              return `
-            <article class="review-card">
-              <div class="review-stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
-              <p class="review-comment">${comment}</p>
-              <p class="review-name">— ${name}</p>
-            </article>
-          `;
-            }
-          )
-          .join("");
-      };
-
-      const loadReviews = async () => {
-        if (!REVIEWS_ENDPOINT) {
-          reviewList.innerHTML = "<p>Live reviews will appear here once connected.</p>";
-          return;
-        }
-
-        try {
-          const response = await fetch(REVIEWS_ENDPOINT, { cache: "no-store" });
-          const data = await response.json();
-          const reviews = Array.isArray(data)
-            ? data
-            : Array.isArray(data.items)
-            ? data.items
-            : Array.isArray(data.data)
-            ? data.data
-            : [];
-          renderReviews(reviews);
-        } catch (error) {
-          reviewList.innerHTML = "<p>Unable to load reviews right now.</p>";
-        }
-      };
-
-      reviewForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        if (!REVIEWS_ENDPOINT) {
-          reviewStatus.textContent = "Reviews are not connected yet.";
-          return;
-        }
-
-        const formData = new FormData(reviewForm);
-        const payload = {
-          name: formData.get("name"),
-          rating: Number(formData.get("rating")),
-          comment: formData.get("comment"),
-        };
-
-        try {
-          const response = await fetch(REVIEWS_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-
-          if (!response.ok) throw new Error("Failed");
-          reviewForm.reset();
-          ratingInput.value = "5";
-          starButtons.forEach((button) => {
-            const value = Number(button.dataset.value);
-            button.classList.toggle("active", value <= 5);
-          });
-          reviewStatus.textContent = "Thanks! Your review is live.";
-          setTimeout(loadReviews, 400);
-        } catch (error) {
-          reviewStatus.textContent = "Could not post review. Try again.";
-        }
-      });
-
-      const setStars = (value) => {
-        ratingInput.value = String(value);
-        starButtons.forEach((button) => {
-          const starValue = Number(button.dataset.value);
-          button.classList.toggle("active", starValue <= value);
-        });
-      };
-
-      starButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const value = Number(button.dataset.value);
-          setStars(value);
-        });
-      });
-
-      setStars(5);
-      loadReviews();
     </script>
   </body>
 </html>
