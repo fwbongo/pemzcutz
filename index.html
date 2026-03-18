@@ -287,21 +287,34 @@
         if (event.key === "ArrowLeft") showPrev();
       });
 
+      const escapeHtml = (value) =>
+        String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+
       const renderReviews = (reviews) => {
-        if (!reviews.length) {
+        if (!Array.isArray(reviews) || !reviews.length) {
           reviewList.innerHTML = "<p>No reviews yet. Be the first!</p>";
           return;
         }
 
         reviewList.innerHTML = reviews
           .map(
-            (review) => `
+            (review) => {
+              const rating = Math.max(1, Math.min(5, Number(review.rating) || 0));
+              const name = escapeHtml(review.name);
+              const comment = escapeHtml(review.comment);
+              return `
             <article class="review-card">
-              <div class="review-stars">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-              <p class="review-comment">${review.comment}</p>
-              <p class="review-name">— ${review.name}</p>
+              <div class="review-stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
+              <p class="review-comment">${comment}</p>
+              <p class="review-name">— ${name}</p>
             </article>
-          `
+          `;
+            }
           )
           .join("");
       };
@@ -313,9 +326,16 @@
         }
 
         try {
-          const response = await fetch(REVIEWS_ENDPOINT);
+          const response = await fetch(REVIEWS_ENDPOINT, { cache: "no-store" });
           const data = await response.json();
-          renderReviews(data);
+          const reviews = Array.isArray(data)
+            ? data
+            : Array.isArray(data.items)
+            ? data.items
+            : Array.isArray(data.data)
+            ? data.data
+            : [];
+          renderReviews(reviews);
         } catch (error) {
           reviewList.innerHTML = "<p>Unable to load reviews right now.</p>";
         }
@@ -350,7 +370,7 @@
             button.classList.toggle("active", value <= 5);
           });
           reviewStatus.textContent = "Thanks! Your review is live.";
-          loadReviews();
+          setTimeout(loadReviews, 400);
         } catch (error) {
           reviewStatus.textContent = "Could not post review. Try again.";
         }
